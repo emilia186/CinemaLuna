@@ -1,24 +1,10 @@
 ﻿using CinemaLuna.Windows;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CinemaLuna.UserControls
 {
-    /// <summary>
-    /// Interaction logic for MenuControl.xaml
-    /// </summary>
     public partial class MenuControl : UserControl
     {
         public MenuControl()
@@ -33,18 +19,42 @@ namespace CinemaLuna.UserControls
                         .OfType<LoginWindow>()
                         .FirstOrDefault();
 
-            if (loginWin != null)
+            CheckWindow<LoginWindow>(loginWin);
+        }
+
+        private void OnPriceListButton(object sender, RoutedEventArgs e)
+        {
+            //sprawdzanie czy cennik juz nie istnieje
+            var priceWin = Application.Current.Windows
+                        .OfType<PriceListWindow>()
+                        .FirstOrDefault();
+
+            var mainWin = Application.Current.Windows
+                        .OfType<MainWindow>()
+                        .FirstOrDefault();
+
+            CheckWindow<PriceListWindow>(priceWin, mainWin);
+        }
+
+        private static void CheckWindow<T>(Window window, Window closeWin = null) where T : Window, new()
+        {
+            if (window != null)
             {
-                if (loginWin.WindowState == WindowState.Minimized)
+                if (window.WindowState == WindowState.Minimized)
                 {
-                    loginWin.WindowState = WindowState.Normal;
+                    window.WindowState = WindowState.Normal;
                 }
-                loginWin.Activate();
+                window.Activate();
             }
             else
             {
-                LoginWindow loginWindow = new LoginWindow();
-                loginWindow.Show();
+                T newWindow = new T();
+                newWindow.Show();
+
+                if(closeWin != null)
+                {
+                    closeWin.Close();
+                }
             }
         }
     }

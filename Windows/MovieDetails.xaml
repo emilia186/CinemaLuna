@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CinemaLuna.Windows"
         xmlns:CustomControls="clr-namespace:CinemaLuna.UserControls"
         mc:Ignorable="d"
-        Title="MovieDetails"  Height="450" Width="990" MinHeight="450" MinWidth="900" Background="Black">
+        Title="MovieDetails"  Height="450" Width="990" MinHeight="500" MinWidth="900" Background="Black">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -19,7 +19,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
             
         </Grid.RowDefinitions>
 
@@ -28,10 +28,10 @@
         <Image Source="{Binding CoverPath}" Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" Height="240" Width="180" Margin="40,20,40,0"/>
 
         <Label Content="{Binding Title}" Grid.Row="1" Grid.Column="1" Style="{StaticResource NormalText}" FontSize="30" Margin="0" Padding="0" HorizontalAlignment="Left" />
-        <Label Content="film akcji" Grid.Row="1" Grid.Column="1" Style="{StaticResource NormalText}" HorizontalAlignment="Right" Margin="50,0" />
-        <Label Content="od 13 lat" Grid.Row="1" Grid.Column="1" Style="{StaticResource NormalText}" HorizontalAlignment="Right" Margin="150,0" />
-        <Label Content="opis" Foreground="white" Grid.Row="2" Grid.Column="1"/>
-        <Label Content="data premiery" Foreground="white" Grid.Row="3" Grid.Column="1"/>
+        <Label Content="{Binding Category}" Grid.Row="1" Grid.Column="1" Style="{StaticResource NormalText}" HorizontalAlignment="Right" Margin="50,0" />
+        <!--<Label Content="{Binding AgeRatingText}" Grid.Row="1" Grid.Column="1" Style="{StaticResource NormalText}" HorizontalAlignment="Right" Margin="150,0" />-->
+        <TextBlock Text="{Binding Description}" Foreground="white" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,50,0"/>
+        <!--<Label Content="{Binding PremiereDate}" Foreground="white" Grid.Row="3" Grid.Column="1"/>-->
         <Button Content="Kup bilet" Grid.Row="3" Grid.Column="1" Style="{StaticResource NormalButton}" HorizontalAlignment="Right" Margin="70,0" VerticalAlignment="Bottom"/>
 
     </Grid>

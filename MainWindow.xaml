@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CinemaLuna"
         xmlns:CustomControls="clr-namespace:CinemaLuna.UserControls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="990" MinHeight="450" MinWidth="900" Background="Black">
+        Title="MainWindow" Height="450" Width="990" MinHeight="500" MinWidth="900" Background="Black">
 
     <Window.Resources>
         <ResourceDictionary>
