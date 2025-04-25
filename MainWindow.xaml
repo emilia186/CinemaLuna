@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CinemaLuna"
         xmlns:CustomControls="clr-namespace:CinemaLuna.UserControls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" MinHeight="450" MinWidth="820" Background="Black">
+        Title="MainWindow" Height="450" Width="990" MinHeight="450" MinWidth="900" Background="Black">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -16,26 +16,29 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <ScrollViewer>
-        <Grid>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="30">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
+
             <CustomControls:MenuControl Grid.Row="0" HorizontalAlignment="Center"/>
 
-            <WrapPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
-                <CustomControls:MovieControl/>
-                <CustomControls:MovieControl/>
-                <CustomControls:MovieControl/>
-            </WrapPanel>
+            <ItemsControl ItemsSource="{Binding Movies}" Grid.Row="1" HorizontalAlignment="Center">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel IsItemsHost="True" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
 
-            <WrapPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
-                <CustomControls:MovieControl/>
-                <CustomControls:MovieControl/>
-                <CustomControls:MovieControl/>
-            </WrapPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <CustomControls:MovieControl Title="{Binding Title}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+
+            </ItemsControl>
         </Grid>
     </ScrollViewer>
 </Window>

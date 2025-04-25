@@ -1,31 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CinemaLuna
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+ 
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
+
+        private readonly CinemaDbContext _dbService = new CinemaDbContext();
+        public ObservableCollection<Movie> Movies { get; set; } = new ObservableCollection<Movie>();
+
         public MainWindow()
         {
-            DataContext = this;
+            /*var movie = new Movie { Title = "Test Movie", Category="horror" };
+            using (var db = new CinemaDbContext())
+            {
+                db.Movies.Add(movie);
+                db.SaveChanges();
+            }*/
+
+
             InitializeComponent();
+            DataContext = this;
+
+            CinemaDbContext.SetInitializeNoCreate();
+
+            LoadMovies();
         }
+
+        private void LoadMovies()
+        {
+            Movies.Clear();
+            var moviesFromDb = _dbService.GetAllMovies();
+            foreach (var movie in moviesFromDb)
+            {
+                Movies.Add(movie);
+            }
+        }
+
 
         private string movieTitle;
 
