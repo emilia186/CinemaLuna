@@ -24,16 +24,12 @@ namespace CinemaLuna
                 Title TEXT NOT NULL,
                 Category TEXT NOT NULL,
                 CoverPath TEXT NOT NULL,
-                
-                
-                Description TEXT NOT NULL
-                
+                AgeRating TEXT NOT NULL,
+                ReleaseDate TEXT NOT NULL,
+                Description TEXT NOT NULL,
+                Subtitles TEXT NOT NULL,
+                Format3D TEXT NOT NULL
                 );";
-
-            //AgeRating INTEGER NOT NULL,
-            //PremiereDate DATE NOT NULL,
-            //Subtitles BIT NOT NULL,
-            //Format3D BIT NOT NULL,
 
 
             using (var dbConnection = new SQLiteConnection(this.Database.Connection.ConnectionString))
@@ -81,11 +77,11 @@ namespace CinemaLuna
             movies.Property(a => a.Title).IsRequired();
             movies.Property(a => a.Category).IsRequired();
             movies.Property(a => a.CoverPath).IsRequired();
-            //movies.Property(a => a.AgeRating).IsRequired();
-            //movies.Property(a => a.PremiereDate).IsRequired();
+            movies.Property(a => a.AgeRating).IsRequired();
+            movies.Property(a => a.ReleaseDate).IsRequired();
             movies.Property(a => a.Description).IsRequired();
-            //movies.Property(a => a.Subtitles).IsRequired();
-            //movies.Property(a => a.Format3D).IsRequired();
+            movies.Property(a => a.Subtitles).IsRequired();
+            movies.Property(a => a.Format3D).IsRequired();
         }
 
         public static void SetInitializeNoCreate()

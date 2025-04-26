@@ -13,12 +13,13 @@ namespace CinemaLuna
         public string Title { get; set; }
         public string Category { get; set; }
         public string CoverPath { get; set; }
-        //public int AgeRating { get; set; }
-        //public SqlDateTime PremiereDate { get; set; }
+        public string AgeRating { get; set; }
+        public string ReleaseDate { get; set; }
         public string Description { get; set; }
-        //public bool Subtitles { get; set; }
-        //public bool Format3D { get; set; }
+        public string Subtitles { get; set; }
+        public string Format3D { get; set; }
 
-        //public string AgeRatingText => $"od {AgeRating} lat";
+        public string AgeRatingText => $"od {AgeRating} lat";
+        public string ReleaseDateText => $"Premiera:\n{ReleaseDate}";
     }
 }

@@ -41,26 +41,24 @@ namespace CinemaLuna.UserControls
         public static readonly System.Windows.DependencyProperty CoverPathProperty =
             DependencyProperty.Register("CoverPath", typeof(string), typeof(MovieControl), new PropertyMetadata(""));
 
-/*        public int AgeRating
+        public string AgeRating
         {
-            get => (int)GetValue(AgeRatingProperty);
+            get => (string)GetValue(AgeRatingProperty);
             set => SetValue(AgeRatingProperty, value);
         }
 
 
         public static readonly System.Windows.DependencyProperty AgeRatingProperty =
-            DependencyProperty.Register("AgeRating", typeof(int), typeof(MovieControl), new PropertyMetadata(""));*/
+            DependencyProperty.Register("AgeRating", typeof(string), typeof(MovieControl), new PropertyMetadata(""));
 
-        
-
-        /*public SqlDateTime PremiereDate
+        public string ReleaseDate
         {
-            get => (SqlDateTime)GetValue(PremiereDateProperty);
-            set => SetValue(PremiereDateProperty, value);
+            get => (string)GetValue(ReleaseDateProperty);
+            set => SetValue(ReleaseDateProperty, value);
         }
 
-        public static readonly System.Windows.DependencyProperty PremiereDateProperty =
-            DependencyProperty.Register("PremiereDate", typeof(SqlDateTime), typeof(MovieControl), new PropertyMetadata(""));*/
+        public static readonly System.Windows.DependencyProperty ReleaseDateProperty =
+            DependencyProperty.Register("ReleaseDate", typeof(string), typeof(MovieControl), new PropertyMetadata(""));
 
         public string Description
         {
@@ -71,23 +69,23 @@ namespace CinemaLuna.UserControls
         public static readonly System.Windows.DependencyProperty DescriptionProperty =
             DependencyProperty.Register("Description", typeof(string), typeof(MovieControl), new PropertyMetadata(""));
 
-        /*public bool Subtitles
+        public string Subtitles
         {
-            get => (bool)GetValue(SubtitlesProperty);
+            get => (string)GetValue(SubtitlesProperty);
             set => SetValue(SubtitlesProperty, value);
         }
 
         public static readonly System.Windows.DependencyProperty SubtitlesProperty =
-            DependencyProperty.Register("Subtitles", typeof(bool), typeof(MovieControl), new PropertyMetadata(""));
+            DependencyProperty.Register("Subtitles", typeof(string), typeof(MovieControl), new PropertyMetadata(""));
 
-        public bool Format3D
+        public string Format3D
         {
-            get => (bool)GetValue(Format3DProperty);
+            get => (string)GetValue(Format3DProperty);
             set => SetValue(Format3DProperty, value);
         }
 
         public static readonly System.Windows.DependencyProperty Format3DProperty =
-            DependencyProperty.Register("Format3D", typeof(bool), typeof(MovieControl), new PropertyMetadata(""));*/
+            DependencyProperty.Register("Format3D", typeof(string), typeof(MovieControl), new PropertyMetadata(""));
 
 
 
