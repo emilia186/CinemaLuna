@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CinemaLuna.Windows"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="415" Width="600" Background="Black" ResizeMode="CanMinimize">
+        Title="LoginWindow" Height="430" Width="650" Background="Black" ResizeMode="CanMinimize">
     <Grid Margin="20,20,20,10">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -13,6 +13,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
@@ -21,18 +22,23 @@
         <Label x:Name="LlogTitle" Style="{StaticResource NormalText}" Content="Logowanie" Grid.Row="0" FontSize="40" Height="auto"/>
         <StackPanel Orientation="Horizontal" Grid.Row="1">
             <Label Style="{StaticResource NormalText}" Content="E-mail:" Width="75" FontSize="20"/>
-            <TextBox Style="{StaticResource NormalTextBox}"/>
+            <TextBox x:Name="EmailText" Style="{StaticResource NormalTextBox}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="2">
             <Label Style="{StaticResource NormalText}" Content="Hasło:" Width="75" FontSize="20"/>
-            <PasswordBox Style="{StaticResource StandardPasswordBox}"/>
+            <PasswordBox x:Name="PasswordText" Style="{StaticResource StandardPasswordBox}"/>
         </StackPanel>
         <StackPanel x:Name="SPReaPass" Orientation="Horizontal" Grid.Row="3" Visibility="Hidden">
             <Label Style="{StaticResource NormalText}" Content="Powtórz&#x0a;  hasło:" Height="auto" Width="90" FontSize="18" HorizontalContentAlignment="Center" VerticalAlignment="Center" Margin="0,0,15,0"/>
-            <PasswordBox Style="{StaticResource StandardPasswordBox}"/>
+            <PasswordBox x:Name="RPasswordText" Style="{StaticResource StandardPasswordBox}"/>
+        </StackPanel>
+        <StackPanel x:Name="Username" Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Visibility="Hidden">
+            <Label Style="{StaticResource NormalText}" Content="Name:" Width="75" FontSize="20" Margin="0,0,10,0"/>
+            <TextBox x:Name="NameText" Style="{StaticResource NormalTextBox}" Width="140"/>
         </StackPanel>
         <Label x:Name="LOtherOpt" Style="{StaticResource NormalText}" Content="Nie masz jeszcze konta?" Grid.Row="3" Grid.Column="1" FontSize="16" Margin="0" HorizontalContentAlignment="Center" VerticalAlignment="Bottom"/>
         <Button x:Name="FirstButton" Click="OnFirstButton" Content="Zaloguj się" Style="{StaticResource NormalButton}" Grid.Row="4" Grid.Column="0" Margin="30,15"/>
         <Button x:Name="SecondButton" Click="OnSecondButton" Content="Zarejestruj się" Style="{StaticResource NormalButton}" Grid.Row="4" Grid.Column="1" Margin="30,15"/>
+        <Label x:Name="InfoLabel" Style="{StaticResource NormalText}" Content="" Grid.Row="5" Grid.Column="0" Margin="0" Foreground="OrangeRed" VerticalAlignment="Top" HorizontalAlignment="Center"/>
     </Grid>
 </Window>

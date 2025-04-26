@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlTypes;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -23,7 +24,9 @@ namespace CinemaLuna.UserControls
         public static readonly System.Windows.DependencyProperty TitleProperty =
             DependencyProperty.Register("Title", typeof(string), typeof(MovieControl), new PropertyMetadata(""));
 
-        public string Category
+        
+
+        /*public string Category
         {
             get => (string)GetValue(CategoryProperty);
             set => SetValue(CategoryProperty, value);
@@ -85,7 +88,7 @@ namespace CinemaLuna.UserControls
         }
 
         public static readonly System.Windows.DependencyProperty Format3DProperty =
-            DependencyProperty.Register("Format3D", typeof(string), typeof(MovieControl), new PropertyMetadata(""));
+            DependencyProperty.Register("Format3D", typeof(string), typeof(MovieControl), new PropertyMetadata(""));*/
 
 
 
@@ -94,7 +97,12 @@ namespace CinemaLuna.UserControls
             if(DataContext is Movie movie)
             {
                 var detailsWindow = new MovieDetails(movie);
-                detailsWindow.ShowDialog();
+                detailsWindow.Show();
+
+                var mainWin = Application.Current.Windows
+                        .OfType<MainWindow>()
+                        .FirstOrDefault();
+                mainWin.Close();
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
 
 namespace CinemaLuna.Windows
 {
@@ -11,6 +12,18 @@ namespace CinemaLuna.Windows
 
             Title = movie.Title;
             DataContext = movie;
+        }
+
+        private void OnBuyTicketButton(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is Movie movie)
+            {
+                var ticketWindow = new BuyTicketWindow(movie);
+                ticketWindow.Show();
+
+            }
+
+            this.Close();
         }
     }
 }

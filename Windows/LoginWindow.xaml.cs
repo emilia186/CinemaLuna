@@ -14,9 +14,7 @@ using System.Windows.Shapes;
 
 namespace CinemaLuna.Windows
 {
-    /// <summary>
-    /// Interaction logic for LoginWindow.xaml
-    /// </summary>
+    
     public partial class LoginWindow : Window
     {
         public LoginWindow()
@@ -30,26 +28,67 @@ namespace CinemaLuna.Windows
             {
                 LlogTitle.Content = "Rejestracja";
                 SPReaPass.Visibility = Visibility.Visible;
+                Username.Visibility = Visibility.Visible;
                 LOtherOpt.Content = "Masz już konto?";
                 FirstButton.Content = "Zarejestruj się";
                 SecondButton.Content = "Zaloguj się";
+                InfoLabel.Content = "";
             }
             else
             {
                 LlogTitle.Content = "Logowanie";
                 SPReaPass.Visibility = Visibility.Hidden;
+                Username.Visibility = Visibility.Hidden;
                 LOtherOpt.Content = "Nie masz jeszcze konta?";
                 FirstButton.Content = "Zaloguj się";
                 SecondButton.Content = "Zarejestruj się";
+                InfoLabel.Content = "";
             }
         }
 
         private void OnFirstButton(object sender, RoutedEventArgs e)
         {
+            InfoLabel.Foreground = new SolidColorBrush(Colors.OrangeRed);
+
             //proces logowania
-            if (LlogTitle.Content.ToString() == "Logowanie") { }
-            //proces rejestracjji
-            else { }
+            if (LlogTitle.Content.ToString() == "Logowanie") {
+                bool result = CinemaDbContext.CheckIfUser(EmailText,PasswordText);
+                if (result)
+                {
+                    
+                    var mainWin = Application.Current.Windows
+                        .OfType<MainWindow>()
+                        .FirstOrDefault();
+                    mainWin.Close();
+
+                    this.Close();
+                }
+                else
+                {
+                    InfoLabel.Content = "Niepoprawny email lub hasło.";
+                }
+            }
+
+            //proces rejestracji
+            else {
+                if(PasswordText.Password == RPasswordText.Password)
+                {
+                    bool signUpResult = CinemaDbContext.AddUser(NameText, EmailText, PasswordText, InfoLabel);
+                    if(signUpResult) {
+                        LlogTitle.Content = "Logowanie";
+                        SPReaPass.Visibility = Visibility.Hidden;
+                        Username.Visibility = Visibility.Hidden;
+                        LOtherOpt.Content = "Nie masz jeszcze konta?";
+                        FirstButton.Content = "Zaloguj się";
+                        SecondButton.Content = "Zarejestruj się";
+                    }
+                }
+                else
+                {
+                    InfoLabel.Content = "Hasła się różnią.";
+                }
+            
+            }
 
         }
     }
