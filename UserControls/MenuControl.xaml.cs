@@ -57,5 +57,25 @@ namespace CinemaLuna.UserControls
                 }
             }
         }
+
+        private void OnRepertoireButton(object sender, RoutedEventArgs e)
+        {
+            //sprawdzanie czy okno glowne(repertuar) juz nie istnieje
+            var mainWin = Application.Current.Windows
+                        .OfType<MainWindow>()
+                        .FirstOrDefault();
+
+            CheckWindow<MainWindow>(mainWin);
+        }
+
+        private void OnMovieAnnButton(object sender, RoutedEventArgs e)
+        {
+            //sprawdzanie czy okno glowne(repertuar) juz nie istnieje
+            var movieAnnWin = Application.Current.Windows
+                        .OfType<MovieAnnouncementsWindow>()
+                        .FirstOrDefault();
+
+            CheckWindow<MovieAnnouncementsWindow>(movieAnnWin);
+        }
     }
 }

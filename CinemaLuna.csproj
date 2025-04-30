@@ -78,7 +78,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CinemaDbContext.cs" />
+    <Compile Include="Model\Hall.cs" />
     <Compile Include="Model\Movie.cs" />
+    <Compile Include="Model\Seanse.cs" />
+    <Compile Include="Model\Ticket.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Resource.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -91,11 +94,20 @@
     <Compile Include="UserControls\MovieControl.xaml.cs">
       <DependentUpon>MovieControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\SeanseElement.xaml.cs">
+      <DependentUpon>SeanseElement.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\BuyTicketWindow.xaml.cs">
       <DependentUpon>BuyTicketWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ChoseSeatWindow.xaml.cs">
+      <DependentUpon>ChoseSeatWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MovieAnnouncementsWindow.xaml.cs">
+      <DependentUpon>MovieAnnouncementsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\MovieDetails.xaml.cs">
       <DependentUpon>MovieDetails.xaml</DependentUpon>
@@ -130,11 +142,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\SeanseElement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\BuyTicketWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\ChoseSeatWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MovieAnnouncementsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

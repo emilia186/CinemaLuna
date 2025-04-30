@@ -7,26 +7,42 @@
         xmlns:CustomControls="clr-namespace:CinemaLuna.UserControls"
         mc:Ignorable="d"
         Title="BuyTicketWindow" Height="450" Width="990" MinHeight="500" MinWidth="900" Background="Black">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
 
-        <CustomControls:MenuControl Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+            </Grid.RowDefinitions>
 
-        <Image Source="{Binding CoverPath}" Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" Height="240" Width="180" Margin="40,20,40,0"/>
+            <CustomControls:MenuControl Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
 
-        <Label Content="{Binding Title}" Grid.Row="1" Grid.Column="1" Style="{StaticResource NormalText}" FontSize="30" Margin="0" Padding="0" HorizontalAlignment="Left" />
+            <Image Source="{Binding CoverPath}" Grid.Row="1" Grid.Column="0" Grid.RowSpan="4" Height="240" Width="180" Margin="40,20,40,0" VerticalAlignment="Top"/>
 
-    </Grid>
+            <Label Content="{Binding Title}" Grid.Row="1" Grid.Column="1" Style="{StaticResource NormalText}" FontSize="30" Margin="0,20" Padding="0" HorizontalAlignment="Left" />
+            <Label Content="{Binding Category}" Grid.Row="1" Grid.Column="1" Style="{StaticResource NormalText}" HorizontalAlignment="Right" Margin="90,0" />
+            <Label Content="{Binding AgeRatingText}" Grid.Row="1" Grid.Column="1" Style="{StaticResource NormalText}" HorizontalAlignment="Right" Margin="250,0" />
+
+            <Rectangle Fill="DimGray" Grid.Row="2" Grid.Column="1" Height="40" Width="530" HorizontalAlignment="Left" />
+            <StackPanel x:Name="DaysStackPanel" Grid.Row="2" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center"/>
+
+
+            <Label x:Name="TodayDate" Grid.Row="3" Grid.Column="1" Style="{StaticResource NormalText}" FontSize="16" Padding="0" Margin="0,20" HorizontalAlignment="Left" />
+
+            <WrapPanel x:Name="SeanseContainer" Grid.Row="4" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left"/>
+
+            <Label x:Name="NoSeanseLabel" Grid.Row="4" Grid.Column="1" Content="Brak seansów." 
+       Foreground="LightGray" FontSize="16" Visibility="Collapsed" 
+       VerticalAlignment="Top" Margin="10,10,0,0"/>
+        </Grid>
+    </ScrollViewer>
 </Window>

@@ -24,10 +24,19 @@
             </Grid.RowDefinitions>
 
             <Image Source="{StaticResource logo}" Grid.Column="0" Width="150" Margin="20,30,20,5" VerticalAlignment="Top"/>
-            <Button Content="Repertuar" Style="{StaticResource NormalButton}" Grid.Column="1"/>
+            <Button Content="Repertuar" Click="OnRepertoireButton" Style="{StaticResource NormalButton}" Grid.Column="1"/>
             <Button Content="Cennik" Click="OnPriceListButton" Style="{StaticResource NormalButton}" Grid.Column="2"/>
-            <Button Content="Zapowiedzi" Style="{StaticResource NormalButton}" Grid.Column="3"/>
-            <Button Content="Więcej" Style="{StaticResource NormalButton}" Grid.Column="4"/>
+            <Button Content="Zapowiedzi" Click="OnMovieAnnButton" Style="{StaticResource NormalButton}" Grid.Column="3"/>
+            <Button Content="Więcej" Style="{StaticResource NormalButton}" Grid.Column="4">
+                <Button.ToolTip>
+                    <ToolTip Background="#d9d9d9" Foreground="Black" FontSize="14" Padding="10">
+                        <StackPanel>
+                            <TextBlock Text="Wkrótce więcej opcji będzie dostepne." />
+                            <TextBlock Text="Nie przegap ich!" />
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
             <Button Click="OnUserAccountButton" Grid.Column="5" Background="Transparent" BorderThickness="0" VerticalAlignment="Top">
                 <Image Source="{StaticResource user_account}" Width="70" Margin="20,30,20,5"  Height="70"/>
             </Button>

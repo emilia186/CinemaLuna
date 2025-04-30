@@ -1,0 +1,25 @@
+﻿using System.Windows;
+
+namespace CinemaLuna.Windows
+{
+
+    public partial class MovieAnnouncementsWindow : Window
+    {
+        public MovieAnnouncementsWindow()
+        {
+            InitializeComponent();
+            LoadUpcomingMovies();
+
+        }
+
+        private void LoadUpcomingMovies()
+        {
+            using (var db = new CinemaDbContext())
+            {
+                var upcomingMovies = db.GetUpcomingMovies(); // używasz Twojej gotowej funkcji
+
+                MoviesItemsControl.ItemsSource = upcomingMovies; // ustawiasz filmy w ItemsControl
+            }
+        }
+    }
+}

@@ -13,14 +13,7 @@ namespace CinemaLuna
 
         public MainWindow()
         {
-            /*var movie = new Movie { Title = "Test Movie", Category="horror" };
-            using (var db = new CinemaDbContext())
-            {
-                db.Movies.Add(movie);
-                db.SaveChanges();
-            }*/
-
-
+            
             InitializeComponent();
             DataContext = this;
 

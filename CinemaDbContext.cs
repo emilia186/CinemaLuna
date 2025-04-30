@@ -1,21 +1,13 @@
 ﻿using CinemaLuna.Model;
+using CinemaLuna.Windows;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration;
-using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Linq;
-using System.Configuration;
-//using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Windows.Controls;
-using System;
-using System.Runtime.CompilerServices;
-using System.Windows.Forms.VisualStyles;
-using System.Drawing;
 using System.Windows.Media;
-using CinemaLuna.Windows;
-//using System.Windows.Forms;
-
 
 namespace CinemaLuna
 {
@@ -26,47 +18,12 @@ namespace CinemaLuna
 
         public DbSet<Movie> Movies { get; set; }
 
+        public DbSet<Seanse> Seanse { get; set; }
 
         public CinemaDbContext() : base("CinemaDbContext") // nazwa connection stringa z App.config
         {
         }
 
-        /*protected void CreateTables()
-        {
-            const string sqlTextCreateTables = @"  
-            CREATE TABLE IF NOT EXISTS Movies 
-                (Id INTEGER PRIMARY KEY NOT NULL,
-                Title TEXT NOT NULL,
-                Category TEXT NOT NULL,
-                CoverPath TEXT NOT NULL,
-                AgeRating TEXT NOT NULL,
-                ReleaseDate TEXT NOT NULL,
-                Description TEXT NOT NULL,
-                Subtitles TEXT NOT NULL,
-                Format3D TEXT NOT NULL
-                );";
-
-
-            using (var dbConnection = new SQLiteConnection(this.Database.Connection.ConnectionString))
-            {
-                dbConnection.Open();
-                using (var dbCommand = dbConnection.CreateCommand())
-                {
-                    dbCommand.CommandText = sqlTextCreateTables;
-                    dbCommand.ExecuteNonQuery();
-                }
-            }
-        }
-
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            this.CreateTables(); // ręczne tworzenie tabel
-
-            this.OnModelCreatingTable(modelBuilder.Entity<Movie>());
-
-            base.OnModelCreating(modelBuilder);
-        }*/
 
         public List<Movie> GetAllMovies()
         {
@@ -76,20 +33,37 @@ namespace CinemaLuna
             }
         }
 
-
-
-
-        /*public static bool CheckIfUser(TextBox EmailTB)
+        public List<Movie> GetUpcomingMovies()
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["CinemaDbContext"].ConnectionString;
-
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (var db = new CinemaDbContext())
             {
+                var todayPlus7 = DateTime.Now.AddDays(7);
 
+                var upcomingMovies = db.Movies
+                    .ToList() // pobieramy wszystko
+                    .Where(movie =>
+                    {
+                        if (DateTime.TryParse(movie.ReleaseDate, out DateTime releaseDate))
+                        {
+                            return releaseDate > todayPlus7;
+                        }
+                        return false;
+                    })
+                    .ToList();
+
+                return upcomingMovies;
             }
+        }
 
-                return false;
-        }*/
+        public List<Seanse> GetTodaySeanse()
+        {
+            using (var db = new CinemaDbContext())
+            {
+                var today = DateTime.Today.ToString("yyyy-MM-dd");
+                return db.Set<Seanse>().Where(s => s.ScreeningDate == today).ToList();
+            }
+        }
+
 
         public static bool CheckIfUser(TextBox EmailTB, PasswordBox PasswordPB)
         {
@@ -205,28 +179,6 @@ namespace CinemaLuna
             }
         }
 
-        /*public void AddMovie(Movie movie)
-        {
-            using (var db = new CinemaDbContext())
-            {
-                db.Movies.Add(movie);
-                db.SaveChanges();
-            }
-        }*/
-
-        /*private void OnModelCreatingTable(EntityTypeConfiguration<Movie> movies)
-        {
-            movies.ToTable("Movies").HasKey(a => a.Id);
-
-            movies.Property(a => a.Title).IsRequired();
-            movies.Property(a => a.Category).IsRequired();
-            movies.Property(a => a.CoverPath).IsRequired();
-            movies.Property(a => a.AgeRating).IsRequired();
-            movies.Property(a => a.ReleaseDate).IsRequired();
-            movies.Property(a => a.Description).IsRequired();
-            movies.Property(a => a.Subtitles).IsRequired();
-            movies.Property(a => a.Format3D).IsRequired();
-        }*/
 
         public static void SetInitializeNoCreate()
         {
