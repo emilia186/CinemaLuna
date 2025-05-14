@@ -6,12 +6,13 @@
              xmlns:local="clr-namespace:CinemaLuna.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="230" d:DesignWidth="150">
-    <Grid Margin="35">
+    <Grid Margin="35" MouseLeftButtonUp="MovieControlClick">
+
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-            <Rectangle Fill="#d9d9d9" Grid.Row="0" Height="200" Width="150"/>
-        <Label Style="{StaticResource NormalText}" Content="Movie name" Grid.Row="1" HorizontalContentAlignment="Center" Width="150" FontSize="20"/>
+            <Image Source="{Binding CoverPath}" Grid.Row="0" Height="200" Width="150"/>
+        <Label Style="{StaticResource NormalText}" Content="{Binding Title}" Grid.Row="1" HorizontalContentAlignment="Center" Width="150" FontSize="12"/>
     </Grid>
 </UserControl>
