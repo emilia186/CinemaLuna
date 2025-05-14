@@ -7,10 +7,12 @@
         xmlns:CustomControls="clr-namespace:CinemaLuna.UserControls"
         mc:Ignorable="d"
         Title="UserAccountWindow" Height="450" Width="990" MinHeight="500" MinWidth="900" Background="Black">
-    <Grid>
+
+    
+        <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -26,5 +28,8 @@
         <Label x:Name="usernameL" Style="{StaticResource NormalText}" Grid.Row="1" Grid.Column="1" FontSize="30" Padding="0" VerticalAlignment="Center"/>
         <Label Content="Twoje bilety:" Style="{StaticResource NormalText}" Grid.Row="2" Grid.Column="1" FontSize="20" Padding="0"/>
 
+        <WrapPanel x:Name="TicketsContainer" Grid.Row="3" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+
     </Grid>
+    
 </Window>

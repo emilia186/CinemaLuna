@@ -18,9 +18,7 @@ namespace CinemaLuna.Windows
         {
             if (DataContext is Movie movie)
             {
-                var ticketWindow = new BuyTicketWindow(movie);
-                ticketWindow.Show();
-
+                WindowManager.OpenNewWindowAndCloseOthers(new BuyTicketWindow(movie));
             }
 
             this.Close();

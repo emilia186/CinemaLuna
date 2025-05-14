@@ -51,22 +51,22 @@ namespace CinemaLuna.Windows
 
                 if (seanse.Count == 0)
                 {
-                    NoSeanseLabel.Visibility = Visibility.Visible; // pokaż komunikat
+                    NoSeanseLabel.Visibility = Visibility.Visible; 
                 }
                 else
                 {
-                    NoSeanseLabel.Visibility = Visibility.Hidden; // ukryj komunikat
+                    NoSeanseLabel.Visibility = Visibility.Hidden; 
 
                     foreach (var seans in seanse)
                     {
                         var seanseElement = new SeanseElement();
                         seanseElement.SetData(seans);
 
-                        // ✅ dodaj tę obsługę kliknięcia (brakowało jej tutaj!)
+                        
                         seanseElement.SeansClicked += (s, clickedSeans) =>
                         {
-                            var choseSeatWindow = new ChoseSeatWindow(clickedSeans);
-                            choseSeatWindow.Show();
+                            WindowManager.OpenNewWindowAndCloseOthers(new ChoseSeatWindow(clickedSeans, selectedMovie));
+
                         };
 
                         SeanseContainer.Children.Add(seanseElement);
@@ -77,18 +77,14 @@ namespace CinemaLuna.Windows
         }
 
 
-
-        
-
         private void LoadDaysOfWeek()
         {
             string[] dayAbbreviations = { "Nd", "Pn", "Wt", "Śr", "Czw", "Pt", "Sb" };
-            int todayIndex = (int)DateTime.Today.DayOfWeek; // 0 = Sunday, 6 = Saturday
+            int todayIndex = (int)DateTime.Today.DayOfWeek; // 0 = nd
 
             Button todayButton = CreateDayButton("Dziś");
             DaysStackPanel.Children.Add(todayButton);
 
-            // Dodaj kolejne dni tygodnia po dzisiejszym
             for (int i = 1; i < 7; i++)
             {
                 int nextDayIndex = (todayIndex + i) % 7;
@@ -116,24 +112,22 @@ namespace CinemaLuna.Windows
                 Cursor = Cursors.Hand
             };
 
-            // Styl przycisku
+            
             Style style = new Style(typeof(Button));
-
-            // Szablon z ContentPresenter, żeby wyświetlić tekst
+            
             ControlTemplate template = new ControlTemplate(typeof(Button));
             FrameworkElementFactory contentPresenter = new FrameworkElementFactory(typeof(ContentPresenter));
             contentPresenter.SetValue(ContentPresenter.HorizontalAlignmentProperty, HorizontalAlignment.Center);
             template.VisualTree = contentPresenter;
 
-            // Podstawowe właściwości
+            
             style.Setters.Add(new Setter(Button.TemplateProperty, template));
             style.Setters.Add(new Setter(Button.FontWeightProperty, FontWeights.DemiBold));
-            style.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Color.FromRgb(204, 204, 204)))); // jasno szary (#CCCCCC)
+            style.Setters.Add(new Setter(Button.ForegroundProperty, new SolidColorBrush(Color.FromRgb(204, 204, 204)))); 
             style.Setters.Add(new Setter(Button.BackgroundProperty, Brushes.Transparent));
             style.Setters.Add(new Setter(Button.BorderBrushProperty, Brushes.Transparent));
             style.Setters.Add(new Setter(Button.CursorProperty, Cursors.Hand));
 
-            // Trigger: zmień kolor tekstu na biały po najechaniu
             Trigger hoverTrigger = new Trigger
             {
                 Property = Button.IsMouseOverProperty,
@@ -158,7 +152,7 @@ namespace CinemaLuna.Windows
                 }
                 else
                 {
-                    // Zamień skrót dnia tygodnia na DateTime
+                    
                     DateTime today = DateTime.Today;
                     int todayIndex = (int)today.DayOfWeek;
 
@@ -187,11 +181,10 @@ namespace CinemaLuna.Windows
                 DateTime now = DateTime.Now;
                 string today = now.ToString("yyyy-MM-dd");
 
-                // Najpierw pobierz do listy
                 var seanse = db.Seanse
                                .Where(s => s.MovieId == selectedMovie.Id &&
                                            string.Compare(s.ScreeningDate, today) >= 0)
-                               .ToList() // pobranie danych do pamięci
+                               .ToList() 
                                .OrderBy(s => DateTime.Parse(s.ScreeningDate))
                                .ThenBy(s => TimeSpan.Parse(s.StartTime))
                                .ToList();
@@ -211,8 +204,7 @@ namespace CinemaLuna.Windows
 
                         seanseElement.SeansClicked += (s, clickedSeans) =>
                         {
-                            var choseSeatWindow = new ChoseSeatWindow(clickedSeans);
-                            choseSeatWindow.Show();
+                            WindowManager.OpenNewWindowAndCloseOthers(new ChoseSeatWindow(clickedSeans, selectedMovie));
                         };
 
                         SeanseContainer.Children.Add(seanseElement);

@@ -1,26 +1,29 @@
-﻿using System;
+﻿using CinemaLuna.Model;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CinemaLuna.Windows
 {
-    
+
     public partial class LoginWindow : Window
     {
-        public LoginWindow()
+        private bool BuyingTicket = false;
+        Seanse seansB = null;
+        List<SeatSelection> selectedSeatsB = null;
+        public LoginWindow(bool buyingTicket = false, Seanse seans =null, List<SeatSelection> selectedSeats=null)
         {
             InitializeComponent();
+            BuyingTicket = buyingTicket;
+            seansB = seans;
+            selectedSeatsB = selectedSeats;
         }
+
+        public LoginWindow() : this(false, null, null)
+        {
+            
+        }
+
 
         private void OnSecondButton(object sender, RoutedEventArgs e)
         {
@@ -53,15 +56,9 @@ namespace CinemaLuna.Windows
             //proces logowania
             if (LlogTitle.Content.ToString() == "Logowanie") {
                 bool result = CinemaDbContext.CheckIfUser(EmailText,PasswordText);
-                if (result)
+                if (result && BuyingTicket)
                 {
-                    
-                    var mainWin = Application.Current.Windows
-                        .OfType<MainWindow>()
-                        .FirstOrDefault();
-                    mainWin.Close();
-
-                    this.Close();
+                    WindowManager.OpenNewWindowAndCloseOthers(new TicketSummaryWindow(seansB, selectedSeatsB));
                 }
                 else
                 {

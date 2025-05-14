@@ -1,17 +1,5 @@
 ﻿using CinemaLuna.UserControls;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CinemaLuna.Windows
 {
@@ -23,7 +11,31 @@ namespace CinemaLuna.Windows
             InitializeComponent();
 
             usernameL.Content = $"Cześć, {username}!";
+
+            var tickets = CinemaDbContext.GetUserTickets(SessionMenager.LoggedUser.Id);
+
+            foreach (var ticketInfo in tickets)
+            {
+                var control = new TicketElementControl();
+
+                var ticket = ticketInfo.Ticket;
+                var seans = ticket.SeanseId;
+
+                control.SetTicketInfo(
+                    ticketInfo.MovieTitle,
+                    seans.ScreeningDate,
+                    seans.StartTime,
+                    seans.EndTime,
+                    ticket.SeatRow,
+                    ticket.SeatNumber
+                );
+
+                TicketsContainer.Children.Add(control);
+            }
+
         }
+
+
 
     }
 }

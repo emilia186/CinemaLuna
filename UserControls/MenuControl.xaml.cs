@@ -24,16 +24,7 @@ namespace CinemaLuna.UserControls
 
         private void OnPriceListButton(object sender, RoutedEventArgs e)
         {
-            //sprawdzanie czy cennik juz nie istnieje
-            var priceWin = Application.Current.Windows
-                        .OfType<PriceListWindow>()
-                        .FirstOrDefault();
-
-            var mainWin = Application.Current.Windows
-                        .OfType<MainWindow>()
-                        .FirstOrDefault();
-
-            CheckWindow<PriceListWindow>(priceWin, mainWin);
+            WindowManager.OpenNewWindowAndCloseOthers(new PriceListWindow());
         }
 
         private static void CheckWindow<T>(Window window, Window closeWin = null) where T : Window, new()
@@ -60,22 +51,12 @@ namespace CinemaLuna.UserControls
 
         private void OnRepertoireButton(object sender, RoutedEventArgs e)
         {
-            //sprawdzanie czy okno glowne(repertuar) juz nie istnieje
-            var mainWin = Application.Current.Windows
-                        .OfType<MainWindow>()
-                        .FirstOrDefault();
-
-            CheckWindow<MainWindow>(mainWin);
+            WindowManager.OpenNewWindowAndCloseOthers(new MainWindow());
         }
 
         private void OnMovieAnnButton(object sender, RoutedEventArgs e)
         {
-            //sprawdzanie czy okno glowne(repertuar) juz nie istnieje
-            var movieAnnWin = Application.Current.Windows
-                        .OfType<MovieAnnouncementsWindow>()
-                        .FirstOrDefault();
-
-            CheckWindow<MovieAnnouncementsWindow>(movieAnnWin);
+            WindowManager.OpenNewWindowAndCloseOthers(new MovieAnnouncementsWindow());
         }
     }
 }

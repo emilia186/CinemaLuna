@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CinemaLuna.Model
+﻿namespace CinemaLuna.Model
 {
-    internal class Ticket
+    public class Ticket
     {
         public int Id { set; get; }
         public User UserId { set; get; }

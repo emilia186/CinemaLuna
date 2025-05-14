@@ -88,6 +88,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Include="SessionMenager.cs" />
     <Compile Include="UserControls\MenuControl.xaml.cs">
       <DependentUpon>MenuControl.xaml</DependentUpon>
     </Compile>
@@ -97,6 +98,13 @@
     <Compile Include="UserControls\SeanseElement.xaml.cs">
       <DependentUpon>SeanseElement.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\TicketElementControl.xaml.cs">
+      <DependentUpon>TicketElementControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TicketSumControl.xaml.cs">
+      <DependentUpon>TicketSumControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowManager.cs" />
     <Compile Include="Windows\BuyTicketWindow.xaml.cs">
       <DependentUpon>BuyTicketWindow.xaml</DependentUpon>
     </Compile>
@@ -114,6 +122,9 @@
     </Compile>
     <Compile Include="Windows\PriceListWindow.xaml.cs">
       <DependentUpon>PriceListWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\TicketSummaryWindow.xaml.cs">
+      <DependentUpon>TicketSummaryWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\UserAccountWindow.xaml.cs">
       <DependentUpon>UserAccountWindow.xaml</DependentUpon>
@@ -146,6 +157,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\TicketElementControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TicketSumControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\BuyTicketWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -167,6 +186,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\PriceListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\TicketSummaryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -223,6 +246,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Covers\sniezka.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Covers\Kayara.jpg" />
+    <Resource Include="Images\Covers\OszukacPrzeznaczenie.jpg" />
+    <Resource Include="Images\Covers\UntilDawn.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Covers\MI8.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

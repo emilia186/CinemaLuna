@@ -16,9 +16,9 @@ namespace CinemaLuna.Windows
         {
             using (var db = new CinemaDbContext())
             {
-                var upcomingMovies = db.GetUpcomingMovies(); // używasz Twojej gotowej funkcji
+                var upcomingMovies = db.GetUpcomingMovies(); 
 
-                MoviesItemsControl.ItemsSource = upcomingMovies; // ustawiasz filmy w ItemsControl
+                MoviesItemsControl.ItemsSource = upcomingMovies; 
             }
         }
     }

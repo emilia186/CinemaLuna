@@ -19,7 +19,7 @@ namespace CinemaLuna.UserControls
             SeansData = seans;
             TimeLabel.Content = $"{seans.StartTime} - {seans.EndTime}";
             SalaLabel.Content = $"Sala {seans.HallId}";
-            FormatLabel.Content = "Napisy, 2D"; // jeśli chcesz bardziej dynamicznie, zmienimy
+            FormatLabel.Content = "Napisy, 2D"; 
         }
 
         public event EventHandler<Seanse> SeansClicked;

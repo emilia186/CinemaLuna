@@ -13,6 +13,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
             <Image Source="{Binding CoverPath}" Grid.Row="0" Height="200" Width="150"/>
-        <Label Style="{StaticResource NormalText}" Content="{Binding Title}" Grid.Row="1" HorizontalContentAlignment="Center" Width="150" FontSize="18"/>
+        <Label Style="{StaticResource NormalText}" Content="{Binding Title}" Grid.Row="1" HorizontalContentAlignment="Center" Width="150" FontSize="12"/>
     </Grid>
 </UserControl>

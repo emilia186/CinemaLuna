@@ -6,16 +6,55 @@
         xmlns:local="clr-namespace:CinemaLuna.Windows"
         xmlns:CustomControls="clr-namespace:CinemaLuna.UserControls"
         mc:Ignorable="d"
-        Title="ChoseSeatWindow" Height="450" Width="990" MinHeight="500" MinWidth="900" Background="Black">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        
-        <CustomControls:MenuControl Grid.Row="0" HorizontalAlignment="Center"/>
-        <Label Content="{Binding Name}" Style="{StaticResource NormalText}" FontSize="30"/>
-        <Label x:Name="TodayDate" Grid.Row="1" Style="{StaticResource NormalText}" FontSize="16" Padding="0" Margin="0,20" HorizontalAlignment="Left" />
-    </Grid>
+        Title="ChoseSeatWindow" Height="660" Width="990" MinHeight="500" MinWidth="900" Background="Black">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <CustomControls:MenuControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center"/>
+
+            <Label x:Name="Title" Grid.Row="1" Grid.Column="0" Style="{StaticResource NormalText}" FontSize="30" Margin="90,20,0,20" Padding="0" HorizontalAlignment="Right"/>
+            <Label x:Name="TodayDate" Grid.Row="1" Grid.Column="1" Style="{StaticResource NormalText}" FontSize="20" Margin="20" Padding="0" HorizontalAlignment="Left" VerticalContentAlignment="Bottom"/>
+
+            <Separator Height="0.7" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Background="Gray" Margin="90,0,90,30"/>
+
+            <Rectangle Fill="DimGray" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Width="500" Height="35"  HorizontalAlignment="Center" Margin="30,0,0,0"/>
+            <Label Content="Ekran" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalContentAlignment="Center" FontSize="15"/>
+
+            <UniformGrid Rows="10" Columns="15" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" x:Name="HallGrid" Width="500" HorizontalAlignment="Center" Margin="0,20,0,0">
+
+            </UniformGrid>
+
+            <StackPanel Orientation="Vertical" Grid.Row="4" Grid.Column="2" >
+                <Label Content="Legenda:"  Style="{StaticResource NormalText}" FontSize="18"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Fill="LightGray" Height="25" Width="25" Margin="20,0,0,0" HorizontalAlignment="Left"/>
+                    <Label Content="miejsca wolne" Style="{StaticResource NormalText}" FontSize="15"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Fill="DimGray" Height="25" Width="25" Margin="20,0,0,0" HorizontalAlignment="Left"/>
+                    <Label Content="miejsca zajęte" Style="{StaticResource NormalText}" FontSize="15"/>
+                </StackPanel>
+
+                <Button x:Name="BuyTicketButton" Click="OnBuyTicketButton" Content="Kup Bilet ->" Style="{StaticResource NormalButton}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Background="DimGray"/>
+
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </Window>
